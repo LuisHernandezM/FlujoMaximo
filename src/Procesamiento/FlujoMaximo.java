@@ -28,12 +28,13 @@ public class FlujoMaximo extends Thread{
     public void run(){
         Nodo inicial = listaNodos.get(0);
         Nodo fin = listaNodos.get(listaNodos.size()-1);
+        boolean bandera = true;
         ArrayList<Integer> aux = new ArrayList<>();
         ArrayList<Integer> faux = new ArrayList<>(); 
         aux.add(0);
-        while(true){
+        while(bandera){
             int max = -1;
-            Nodo n = aux.get(aux.size()-1);
+            Nodo n = listaNodos.get(aux.get(aux.size()-1));
             int iFlecha=-1;
             int i=0;
             for (Flecha flecha: listaFlechas){
@@ -47,12 +48,17 @@ public class FlujoMaximo extends Thread{
             }
             int jNodo=-1;
             int j=0;
-            faux.add(listaFlechas.get(iFlecha));
-            Flecha f = faux.get(listaFlechas.size()-1);
+            faux.add(iFlecha);
+            Flecha f = listaFlechas.get(faux.size()-1);
             for (Nodo nodo: listaNodos){
                 if(new Rectangle(nodo.getX()-Nodo.d/2, nodo.getY()-Nodo.d/2,Nodo.d,Nodo.d).contains(new Point(f.getX2(),f.getY2()))){
-                    
+                    jNodo = j;
+                    aux.add(jNodo);
                 }
+                j++;
+            }
+            if ((listaNodos.size()-1)==jNodo){
+                bandera = false;
             }
         }
     }
