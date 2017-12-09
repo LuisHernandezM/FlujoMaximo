@@ -91,6 +91,7 @@ public class FlujoMaximo extends Thread{
                 }
             }
             flow = flow + valmin;
+            bandera=true;
             if(acu==0){
                 JOptionPane.showMessageDialog(grafo, "El flujo máximo es de " + flow);
                 this.stop();
