@@ -21,6 +21,7 @@ public class Grafo {
     
     
     public static void main(String[] args){
+        Lienzo lienzo = new Lienzo();
         JFrame ventana = new JFrame("Flujo Máximo");
         String mensaje = "Antes de calcular el flujo máximo debes dibujar el grafo";
         JOptionPane.showMessageDialog(ventana, mensaje);
@@ -29,12 +30,13 @@ public class Grafo {
         boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Clic :v");
+                FlujoMaximo fm = new FlujoMaximo(lienzo, lienzo.listaNodos, lienzo.listaFlechas);
+                fm.start();
             }
         });
         ventana.add(boton);
         boton.setVisible(true);
-        ventana.add(new Lienzo());
+        ventana.add(lienzo);
         ventana.setSize(700,700);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //ventana.setLayout(new GridLayout(2,1));
